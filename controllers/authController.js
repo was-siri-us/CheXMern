@@ -33,10 +33,10 @@ const registerUser = async (req,res) =>{
             })
         }
 
-        const hashedPassword = await hashPassword(password);
+        // const hashedPassword = await hashPassword(password);
 
         const user = await User.create({
-            name,email,password: hashedPassword,
+            name,email,password: password,
         })
 
         return res.json(user)
@@ -65,9 +65,9 @@ const loginUser = async (req,res)=>{
                 error:"No user found"
             })
         }
+        const match = (password==user.password)
 
         //CHECK PASSWORD
-        const match = await comparePassword(password,user.password)
         if(match){
             jwt.sign({email:user.email, id:user._id, name: user.name,},process.env.JWT_SECRET,{},(err,token) =>{
                 res.cookie('token',token).json(user)
