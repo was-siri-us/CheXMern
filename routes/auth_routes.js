@@ -10,7 +10,7 @@ const {test, registerUser,loginUser} = require('../controllers/authController')
 router.use(
     cors({
         credentials: true,
-        origin: 'https://dynamic-belekoy-623f12.netlify.app'
+        origin: 'https://tubular-crepe-678e4c.netlify.app'
     })
 )
 
